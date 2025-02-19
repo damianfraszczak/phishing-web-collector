@@ -2,23 +2,23 @@ import json
 import logging
 from abc import abstractmethod
 from datetime import datetime
-from typing import List, Dict, Optional
+from typing import Dict, List, Optional
 
-from models import PhishingEntry
-from feeds.file_based_feed import FileBasedFeed
+from pwc.feeds.file_based_feed import FileBasedFeed
+from pwc.models import PhishingEntry
 
 logger = logging.getLogger(__name__)
 
 
 class JSONFeed(FileBasedFeed):
     FILE_EXTENSION = "json"
+
     def parse_feed(self, raw_data: str) -> List[PhishingEntry]:
         try:
             data = json.loads(raw_data)
             fetch_time = datetime.utcnow()
             return [
-                entry for item in data
-                if (entry := self.parse_entry(item, fetch_time))
+                entry for item in data if (entry := self.parse_entry(item, fetch_time))
             ]
         except json.JSONDecodeError:
             logger.error(f"Failed to parse JSON for {self.FEED_TYPE.value}")

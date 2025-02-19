@@ -5,8 +5,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import List
 
-from models import PhishingEntry, FeedSource
-from taxonomies import RefreshInterval
+from pwc.models import FeedSource, PhishingEntry
+from pwc.taxonomies import RefreshInterval
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +22,10 @@ class AbstractFeed(ABC):
 
     def get_feed_path(self) -> Path:
         timestamp = datetime.utcnow().strftime("%Y-%m-%d_%H")
-        return self.storage_path / f"{self.FEED_TYPE.value}_{timestamp}.{self.FILE_EXTENSION}"
+        return (
+            self.storage_path
+            / f"{self.FEED_TYPE.value}_{timestamp}.{self.FILE_EXTENSION}"
+        )
 
     def should_refresh(self) -> bool:
         feed_path = self.get_feed_path()
@@ -37,7 +40,9 @@ class AbstractFeed(ABC):
                 feed_path.write_text(raw_data, encoding="utf-8")
                 logger.info(f"Feed saved: {feed_path}")
             else:
-                logger.warning(f"Skipping save - No data fetched for {self.FEED_TYPE.value}")
+                logger.warning(
+                    f"Skipping save - No data fetched for {self.FEED_TYPE.value}"
+                )
         else:
             logger.info(f"Skipping refresh, feed is up to date: {self.FEED_TYPE.value}")
 

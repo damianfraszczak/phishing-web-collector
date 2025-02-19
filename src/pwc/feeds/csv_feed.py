@@ -2,10 +2,10 @@ import csv
 from abc import abstractmethod
 from datetime import datetime
 from io import StringIO
-from typing import List, Dict, Optional
+from typing import Dict, List, Optional
 
-from models import PhishingEntry
-from feeds.file_based_feed import FileBasedFeed
+from pwc.feeds.file_based_feed import FileBasedFeed
+from pwc.models import PhishingEntry
 
 
 class CSVFeedProvider(FileBasedFeed):
@@ -25,5 +25,7 @@ class CSVFeedProvider(FileBasedFeed):
         return entries
 
     @abstractmethod
-    def parse_row(self, row: Dict[str, str], fetch_time: datetime) -> Optional[PhishingEntry]:
+    def parse_row(
+        self, row: Dict[str, str], fetch_time: datetime
+    ) -> Optional[PhishingEntry]:
         pass
