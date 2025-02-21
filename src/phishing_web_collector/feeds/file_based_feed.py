@@ -3,7 +3,7 @@ from typing import Optional
 
 import aiohttp
 
-from pwc.feeds.feed import AbstractFeed
+from phishing_web_collector.feeds.feed import AbstractFeed
 
 logger = logging.getLogger(__name__)
 

@@ -4,8 +4,8 @@ from abc import abstractmethod
 from datetime import datetime
 from typing import Dict, List, Optional
 
-from pwc.feeds.file_based_feed import FileBasedFeed
-from pwc.models import PhishingEntry
+from phishing_web_collector.feeds.file_based_feed import FileBasedFeed
+from phishing_web_collector.models import PhishingEntry
 
 logger = logging.getLogger(__name__)
 

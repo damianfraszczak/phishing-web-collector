@@ -5,8 +5,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import List
 
-from pwc.models import FeedSource, PhishingEntry
-from pwc.taxonomies import RefreshInterval
+from phishing_web_collector.models import FeedSource, PhishingEntry
+from phishing_web_collector.taxonomies import RefreshInterval
 
 logger = logging.getLogger(__name__)
 

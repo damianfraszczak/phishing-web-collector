@@ -1,9 +1,9 @@
 from datetime import datetime
 from typing import Dict, Optional
 
-from pwc.feeds.json_feed import JSONFeed
-from pwc.models import FeedSource, PhishingEntry
-from pwc.taxonomies import RefreshInterval
+from phishing_web_collector.feeds.json_feed import JSONFeed
+from phishing_web_collector.models import FeedSource, PhishingEntry
+from phishing_web_collector.taxonomies import RefreshInterval
 
 
 class PhishTankFeed(JSONFeed):

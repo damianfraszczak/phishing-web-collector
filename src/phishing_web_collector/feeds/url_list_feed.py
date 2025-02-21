@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import List, Optional
 
-from pwc.feeds.file_based_feed import FileBasedFeed
-from pwc.models import PhishingEntry
+from phishing_web_collector.feeds.file_based_feed import FileBasedFeed
+from phishing_web_collector.models import PhishingEntry
 
 
 class URLListFeedProvider(FileBasedFeed):

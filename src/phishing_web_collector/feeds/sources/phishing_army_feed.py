@@ -1,5 +1,5 @@
-from pwc.feeds.url_list_feed import URLListFeedProvider
-from pwc.models import FeedSource
+from phishing_web_collector.feeds.url_list_feed import URLListFeedProvider
+from phishing_web_collector.models import FeedSource
 
 
 class PhishingArmyFeed(URLListFeedProvider):

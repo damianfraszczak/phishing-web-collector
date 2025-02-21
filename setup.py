@@ -27,7 +27,7 @@ def find_version(*path_parts):
 
 setup(
     name="Phishing Web Collector",
-    version=find_version("src", "pwc", "version.py"),
+    version=find_version("src", "phishing_web_collector", "version.py"),
     license="MIT",
     description="Network centrality library",
     url="https://github.com/damianfraszczak/phishing-web-collector",

@@ -2,10 +2,10 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
 
-from pwc.taxonomies import FeedSource
+from phishing_web_collector.taxonomies import FeedSource
 
 
-@dataclass
+@dataclass(frozen=True)
 class PhishingEntry:
     url: str
     source: FeedSource

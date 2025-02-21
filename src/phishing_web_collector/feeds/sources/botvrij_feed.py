@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import Dict, Optional
 
-from pwc.feeds.csv_feed import CSVFeedProvider
-from pwc.models import FeedSource, PhishingEntry
+from phishing_web_collector.feeds.csv_feed import CSVFeedProvider
+from phishing_web_collector.models import FeedSource, PhishingEntry
 
 
 class BotvrijFeed(CSVFeedProvider):

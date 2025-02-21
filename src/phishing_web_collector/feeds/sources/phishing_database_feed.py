@@ -1,6 +1,6 @@
-from pwc.feeds.url_list_feed import URLListFeedProvider
-from pwc.models import FeedSource
-from pwc.taxonomies import RefreshInterval
+from phishing_web_collector.feeds.url_list_feed import URLListFeedProvider
+from phishing_web_collector.models import FeedSource
+from phishing_web_collector.taxonomies import RefreshInterval
 
 
 class PhishingDatabaseFeed(URLListFeedProvider):
