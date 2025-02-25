@@ -11,10 +11,18 @@ from phishing_web_collector.models import PhishingEntry
 class CSVFeedProvider(FileBasedFeed):
     DELIMITER = ";"
     FILE_EXTENSION = "csv"
+    HEADERS = None
 
     def parse_feed(self, raw_data: str) -> List[PhishingEntry]:
         entries = []
-        reader = csv.DictReader(StringIO(raw_data), delimiter=self.DELIMITER)
+        raw_data_clean = [
+            line.replace('"', "")
+            for line in StringIO(raw_data).read().splitlines()
+            if not line.startswith("#")
+        ]
+        reader = csv.DictReader(
+            raw_data_clean, delimiter=self.DELIMITER, fieldnames=self.HEADERS
+        )
         fetch_time = datetime.utcnow()
 
         for row in reader:

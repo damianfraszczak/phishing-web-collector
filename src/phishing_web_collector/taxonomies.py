@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class FeedSource(Enum):
     PHISH_TANK = "PhishTank"
     OPEN_PHISH = "OpenPhish"
@@ -12,12 +13,13 @@ class FeedSource(Enum):
     BOTVRIJ = "Botvrij"
     VALDIN = "Valdin"
     PHISHING_DATABASE = "PhishingDatabase"
+    PHISH_STATS = "PhishStats"
 
 
 class RefreshInterval(Enum):
     HOURLY = 3600
+    EVERY_2_HOURS = 7200
     EVERY_6_HOURS = 21600
     EVERY_12_HOURS = 43200
     DAILY = 86400
     WEEKLY = 604800
-
