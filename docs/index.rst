@@ -21,16 +21,7 @@ Its ease of use, scalability, and support for various data formats enhance the t
    Quick start <files/QUICK_START.md>
    Contributing <files/CONTRIBUTING.md>
    Code of conduct <files/CODE_OF_CONDUCT.md>
-   Reference <source/modules>
-   modules
 
-Module Reference
-================
-
-.. automodule:: phishing_web_collector
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 Indices and tables
 ==================
