@@ -26,10 +26,10 @@ def find_version(*path_parts):
 
 
 setup(
-    name="Phishing Web Collector",
+    name="phishing-web-collector",
     version=find_version("src", "phishing_web_collector", "version.py"),
     license="MIT",
-    description="Network centrality library",
+    description="Phishing Web Collector",
     url="https://github.com/damianfraszczak/phishing-web-collector",
     author="Damian Frąszczak, Edyta Frąszczak",
     author_email="damian.fraszczak@wat.edu.pl",
@@ -41,7 +41,7 @@ setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
     ],
-    keywords="phishing_websites,malicious_websites, phishing, domains",
+    keywords="phishing_websites malicious_websites phishing",
     install_requires=[],
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
