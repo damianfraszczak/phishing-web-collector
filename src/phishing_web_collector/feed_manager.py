@@ -6,17 +6,24 @@ from typing import Dict, List, Optional, Type
 
 from phishing_web_collector.feeds.feed import AbstractFeed
 from phishing_web_collector.feeds.sources import (
+    BinaryDefenceIpFeed,
     BotvrijFeed,
     C2IntelFeed,
+    C2TrackerIpFeed,
     CertPLFeed,
+    EllioIpFeed,
+    GreenSnowIpFeed,
+    MiraiSecurityIpFeed,
     OpenPhishFeed,
     PhishingArmyFeed,
     PhishingDatabaseFeed,
     PhishStatsFeed,
     PhishTankFeed,
+    ProofPointIpFeed,
     ThreatViewFeed,
     TweetFeed,
     UrlAbuseFeed,
+    UrlHausFeed,
     ValdinFeed,
 )
 from phishing_web_collector.models import FeedSource, PhishingEntry
@@ -25,18 +32,25 @@ from phishing_web_collector.utils import remove_none_from_dict
 logger = logging.getLogger(__name__)
 
 SOURCES_MAP: Dict[FeedSource, Type[AbstractFeed]] = {
-    FeedSource.PHISH_TANK: PhishTankFeed,
-    FeedSource.OPEN_PHISH: OpenPhishFeed,
-    FeedSource.TWEET_FEED: TweetFeed,
-    FeedSource.PHISHING_ARMY: PhishingArmyFeed,
-    FeedSource.CERT_PL: CertPLFeed,
-    FeedSource.THREAT_VIEW_DOMAIN: ThreatViewFeed,
-    FeedSource.C2_INTEL_DOMAIN: C2IntelFeed,
+    FeedSource.BINARY_DEFENCE_IP: BinaryDefenceIpFeed,
     FeedSource.BOTVRIJ: BotvrijFeed,
-    FeedSource.URL_ABUSE: UrlAbuseFeed,
-    FeedSource.VALDIN: ValdinFeed,
+    FeedSource.C2_INTEL_DOMAIN: C2IntelFeed,
+    FeedSource.C2_TRACKER_IP: C2TrackerIpFeed,
+    FeedSource.CERT_PL: CertPLFeed,
+    FeedSource.ELLIO_IP: EllioIpFeed,
+    FeedSource.GREEN_SNOW_IP: GreenSnowIpFeed,
+    FeedSource.MIRAI_SECURITY_IP: MiraiSecurityIpFeed,
+    FeedSource.OPEN_PHISH: OpenPhishFeed,
+    FeedSource.PHISHING_ARMY: PhishingArmyFeed,
     FeedSource.PHISHING_DATABASE: PhishingDatabaseFeed,
     FeedSource.PHISH_STATS: PhishStatsFeed,
+    FeedSource.PHISH_TANK: PhishTankFeed,
+    FeedSource.PROOF_POINT_IP: ProofPointIpFeed,
+    FeedSource.THREAT_VIEW_DOMAIN: ThreatViewFeed,
+    FeedSource.TWEET_FEED: TweetFeed,
+    FeedSource.URL_ABUSE: UrlAbuseFeed,
+    FeedSource.URL_HAUS: UrlHausFeed,
+    FeedSource.VALDIN: ValdinFeed,
 }
 
 

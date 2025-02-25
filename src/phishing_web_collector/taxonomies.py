@@ -2,18 +2,26 @@ from enum import Enum
 
 
 class FeedSource(Enum):
-    PHISH_TANK = "PhishTank"
-    OPEN_PHISH = "OpenPhish"
-    TWEET_FEED = "TweetFeed"
-    PHISHING_ARMY = "PhishingArmy"
-    URL_ABUSE = "UrlAbuse"
-    CERT_PL = "CertPl"
-    THREAT_VIEW_DOMAIN = "ThreatViewDomain"
-    C2_INTEL_DOMAIN = "C2IntelDomain"
+    BINARY_DEFENCE_IP = "BinaryDefenceIP"
+    BLOCKLIST_DE_IP = "BlocklistDeIP"
     BOTVRIJ = "Botvrij"
-    VALDIN = "Valdin"
+    C2_INTEL_DOMAIN = "C2IntelDomain"
+    C2_TRACKER_IP = "C2TrackerIp"
+    CERT_PL = "CertPl"
+    ELLIO_IP = "EllioIP"
+    GREEN_SNOW_IP = "GreenSnowIp"
+    MIRAI_SECURITY_IP = "MiraiSecurityIp"
+    OPEN_PHISH = "OpenPhish"
+    PHISHING_ARMY = "PhishingArmy"
     PHISHING_DATABASE = "PhishingDatabase"
     PHISH_STATS = "PhishStats"
+    PHISH_TANK = "PhishTank"
+    PROOF_POINT_IP = "ProofPointIp"
+    THREAT_VIEW_DOMAIN = "ThreatViewDomain"
+    TWEET_FEED = "TweetFeed"
+    URL_ABUSE = "UrlAbuse"
+    URL_HAUS = "UrlHaus"
+    VALDIN = "Valdin"
 
 
 class RefreshInterval(Enum):
