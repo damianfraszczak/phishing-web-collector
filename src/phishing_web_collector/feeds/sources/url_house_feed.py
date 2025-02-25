@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Dict, Optional
 
-from phishing_web_collector import CSVFeedProvider
+from phishing_web_collector.feeds.csv_feed import CSVFeedProvider
 from phishing_web_collector.models import FeedSource, PhishingEntry
 from phishing_web_collector.taxonomies import RefreshInterval
 
