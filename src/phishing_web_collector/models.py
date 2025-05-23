@@ -12,3 +12,6 @@ class PhishingEntry:
     fetch_date: datetime
     targeted_url: Optional[str] = None
     reference_url: Optional[str] = None
+
+    def __hash__(self):
+        return hash(self.url)

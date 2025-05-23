@@ -7,16 +7,17 @@ from typing import Dict, List, Optional, Type
 from phishing_web_collector.feeds.feed import AbstractFeed
 from phishing_web_collector.feeds.sources import (
     BinaryDefenceIpFeed,
+    BlockListDeIpFeed,
     BotvrijFeed,
     C2IntelFeed,
     C2TrackerIpFeed,
     CertPLFeed,
-    EllioIpFeed,
     GreenSnowIpFeed,
     MiraiSecurityIpFeed,
     OpenPhishFeed,
     PhishingArmyFeed,
     PhishingDatabaseFeed,
+    PhishStatsApiFeed,
     PhishStatsFeed,
     PhishTankFeed,
     ProofPointIpFeed,
@@ -33,17 +34,18 @@ logger = logging.getLogger(__name__)
 
 SOURCES_MAP: Dict[FeedSource, Type[AbstractFeed]] = {
     FeedSource.BINARY_DEFENCE_IP: BinaryDefenceIpFeed,
+    FeedSource.BLOCKLIST_DE_IP: BlockListDeIpFeed,
     FeedSource.BOTVRIJ: BotvrijFeed,
     FeedSource.C2_INTEL_DOMAIN: C2IntelFeed,
     FeedSource.C2_TRACKER_IP: C2TrackerIpFeed,
     FeedSource.CERT_PL: CertPLFeed,
-    FeedSource.ELLIO_IP: EllioIpFeed,
     FeedSource.GREEN_SNOW_IP: GreenSnowIpFeed,
     FeedSource.MIRAI_SECURITY_IP: MiraiSecurityIpFeed,
     FeedSource.OPEN_PHISH: OpenPhishFeed,
     FeedSource.PHISHING_ARMY: PhishingArmyFeed,
     FeedSource.PHISHING_DATABASE: PhishingDatabaseFeed,
     FeedSource.PHISH_STATS: PhishStatsFeed,
+    FeedSource.PHISH_STATS_API: PhishStatsApiFeed,
     FeedSource.PHISH_TANK: PhishTankFeed,
     FeedSource.PROOF_POINT_IP: ProofPointIpFeed,
     FeedSource.THREAT_VIEW_DOMAIN: ThreatViewFeed,
@@ -59,8 +61,6 @@ class FeedManager:
     def __init__(self, sources: List[FeedSource], storage_path: str):
         self.providers = [SOURCES_MAP[source](storage_path) for source in sources]
         self.entries: List[PhishingEntry] = []
-
-    from collections import defaultdict
 
     @property
     def entry_map(self) -> Dict[str, List[PhishingEntry]]:
@@ -110,7 +110,6 @@ class FeedManager:
 
     def export_to_json(self, filename: str = "phishing_data.json"):
         """Export all phishing data to a single JSON file, with the phishing URL as the key."""
-
         with open(filename, "w") as f:
             json.dump(remove_none_from_dict(self.entry_map), f, indent=4)
 
