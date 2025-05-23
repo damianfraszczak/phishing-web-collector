@@ -1,4 +1,5 @@
 # flake8: noqa
+
 from phishing_web_collector.feeds.sources.binary_defence_ip_feed import (
     BinaryDefenceIpFeed,
 )
@@ -16,11 +17,11 @@ from phishing_web_collector.feeds.sources.mirai_security_ip_feed import (
     MiraiSecurityIpFeed,
 )
 from phishing_web_collector.feeds.sources.open_phish_feed import OpenPhishFeed
-from phishing_web_collector.feeds.sources.phish_stats_feed import (
-    PhishStatsFeed,
-)
 from phishing_web_collector.feeds.sources.phish_stats_api_feed import (
     PhishStatsApiFeed,
+)
+from phishing_web_collector.feeds.sources.phish_stats_feed import (
+    PhishStatsFeed,
 )
 from phishing_web_collector.feeds.sources.phish_tank_feed import PhishTankFeed
 from phishing_web_collector.feeds.sources.phishing_army_feed import (

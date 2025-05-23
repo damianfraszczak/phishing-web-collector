@@ -1,4 +1,4 @@
-# PhishingWebCollector: A Python Library for Phishing Website Collection 
+# PhishingWebCollector: A Python Library for Phishing Website Collection
 
 ## Overview
 `PhishingWebCollector` is a Python library that integrates 20 phishing feeds into one solution and offers a platform for collecting and managing malicious website data.
@@ -21,7 +21,6 @@ Its ease of use, scalability, and support for various data formats enhance the t
 - C2IntelFeeds
 - C2Tracker
 - CertPL
-- Ellio
 - GreenSnow
 - MiraiSecurity
 - OpenPhish

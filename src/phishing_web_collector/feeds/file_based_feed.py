@@ -1,13 +1,15 @@
 import logging
 from typing import Optional
 
-from phishing_web_collector.utils import fetch_url
 from phishing_web_collector.feeds.feed import AbstractFeed
+from phishing_web_collector.utils import fetch_url
 
 logger = logging.getLogger(__name__)
 
 
 class FileBasedFeed(AbstractFeed):
+    """Abstract class for file-based feeds."""
+
     URL: str
 
     async def fetch_feed(self) -> Optional[str]:

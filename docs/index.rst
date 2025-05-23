@@ -12,7 +12,6 @@ It utilizes the asyncio module for efficient parallel processing and data collec
 Users can gather historical data from free feeds to construct extensive datasets without costly API subscriptions.
 Its ease of use, scalability, and support for various data formats enhance the threat detection capabilities of cybersecurity teams and researchers while minimizing technical overhead.
 
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
@@ -29,5 +28,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
-
