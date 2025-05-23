@@ -7,17 +7,18 @@ from typing import Dict, List, Optional, Type
 from phishing_web_collector.feeds.feed import AbstractFeed
 from phishing_web_collector.feeds.sources import (
     BinaryDefenceIpFeed,
+    BlockListDeIpFeed,
     BotvrijFeed,
     C2IntelFeed,
     C2TrackerIpFeed,
     CertPLFeed,
-    EllioIpFeed,
     GreenSnowIpFeed,
     MiraiSecurityIpFeed,
     OpenPhishFeed,
     PhishingArmyFeed,
     PhishingDatabaseFeed,
     PhishStatsFeed,
+    PhishStatsApiFeed,
     PhishTankFeed,
     ProofPointIpFeed,
     ThreatViewFeed,
@@ -33,17 +34,18 @@ logger = logging.getLogger(__name__)
 
 SOURCES_MAP: Dict[FeedSource, Type[AbstractFeed]] = {
     FeedSource.BINARY_DEFENCE_IP: BinaryDefenceIpFeed,
+    FeedSource.BLOCKLIST_DE_IP: BlockListDeIpFeed,
     FeedSource.BOTVRIJ: BotvrijFeed,
     FeedSource.C2_INTEL_DOMAIN: C2IntelFeed,
     FeedSource.C2_TRACKER_IP: C2TrackerIpFeed,
     FeedSource.CERT_PL: CertPLFeed,
-    FeedSource.ELLIO_IP: EllioIpFeed,
     FeedSource.GREEN_SNOW_IP: GreenSnowIpFeed,
     FeedSource.MIRAI_SECURITY_IP: MiraiSecurityIpFeed,
     FeedSource.OPEN_PHISH: OpenPhishFeed,
     FeedSource.PHISHING_ARMY: PhishingArmyFeed,
     FeedSource.PHISHING_DATABASE: PhishingDatabaseFeed,
     FeedSource.PHISH_STATS: PhishStatsFeed,
+    FeedSource.PHISH_STATS_API: PhishStatsApiFeed,
     FeedSource.PHISH_TANK: PhishTankFeed,
     FeedSource.PROOF_POINT_IP: ProofPointIpFeed,
     FeedSource.THREAT_VIEW_DOMAIN: ThreatViewFeed,
@@ -57,10 +59,9 @@ SOURCES_MAP: Dict[FeedSource, Type[AbstractFeed]] = {
 class FeedManager:
 
     def __init__(self, sources: List[FeedSource], storage_path: str):
-        self.providers = [SOURCES_MAP[source](storage_path) for source in sources]
+        self.providers = [SOURCES_MAP[source](storage_path) for source in
+                          sources]
         self.entries: List[PhishingEntry] = []
-
-    from collections import defaultdict
 
     @property
     def entry_map(self) -> Dict[str, List[PhishingEntry]]:
@@ -90,7 +91,8 @@ class FeedManager:
 
     async def refresh_all(self, force: bool = False):
         """Refresh all configured feeds_data asynchronously."""
-        await asyncio.gather(*(provider.refresh(force) for provider in self.providers))
+        await asyncio.gather(
+            *(provider.refresh(force) for provider in self.providers))
 
     def sync_refresh_all(self, force: bool = False):
         """Refresh all configured feeds_data synchronously"""
@@ -99,7 +101,8 @@ class FeedManager:
     async def retrieve_all(self) -> List[PhishingEntry]:
         """Retrieve all phishing entries from all feeds_data asynchronously."""
         results = await asyncio.gather(
-            *(asyncio.to_thread(provider.retrieve) for provider in self.providers)
+            *(asyncio.to_thread(provider.retrieve) for provider in
+              self.providers)
         )
         self.entries = [entry for result in results for entry in result]
         return self.entries
@@ -136,7 +139,8 @@ class FeedManager:
             self.entries = entries
             logger.info(f"Imported phishing data from {filename}")
         except Exception as e:  # noqa
-            logger.error(f"Failed to import phishing data from {filename}: {e}")
+            logger.error(
+                f"Failed to import phishing data from {filename}: {e}")
 
     def find_entry(self, domain: str) -> Optional[List[PhishingEntry]]:
         return self.entry_map[domain]

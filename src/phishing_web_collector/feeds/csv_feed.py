@@ -18,7 +18,7 @@ class CSVFeedProvider(FileBasedFeed):
         raw_data_clean = [
             line.replace('"', "")
             for line in StringIO(raw_data).read().splitlines()
-            if not line.startswith("#")
+            if not line.startswith("#") and line.strip()
         ]
         reader = csv.DictReader(
             raw_data_clean, delimiter=self.DELIMITER, fieldnames=self.HEADERS
