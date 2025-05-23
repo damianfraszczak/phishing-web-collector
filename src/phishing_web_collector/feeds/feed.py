@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import time
 from abc import ABC, abstractmethod
 from datetime import datetime
 from pathlib import Path
@@ -29,7 +30,15 @@ class AbstractFeed(ABC):
 
     def should_refresh(self) -> bool:
         feed_path = self.get_feed_path()
-        return not feed_path.exists()
+
+        if not feed_path.exists():
+            return True
+
+        file_mtime = feed_path.stat().st_mtime  #
+        now = time.time()
+        interval_sec = self.INTERVAL / 1000
+
+        return (now - file_mtime) > interval_sec
 
     async def refresh(self, force: bool = False) -> None:
         if force or self.should_refresh():
@@ -48,11 +57,20 @@ class AbstractFeed(ABC):
 
     def retrieve(self) -> List[PhishingEntry]:
         asyncio.run(self.refresh())
-        feed_path = self.get_feed_path()
-        if feed_path.exists():
-            return self.parse_feed(feed_path.read_text(encoding="utf-8"))
-        logger.warning(f"No data found for feed: {self.FEED_TYPE.value}")
-        return []
+        all_files = sorted(self.storage_path.iterdir(), key=lambda f: f.stat().st_mtime)
+        if not all_files:
+            logger.warning(f"No data found for feed: {self.FEED_TYPE.value}")
+            return []
+
+        logger.info(f"Feed range: {all_files[0].name} -> {all_files[-1].name}")
+
+        unique_entries = set()
+
+        for file in all_files:
+            entries = self.parse_feed(file.read_text(encoding="utf-8"))
+            unique_entries.update(entries)
+
+        return list(unique_entries)
 
     @abstractmethod
     def parse_feed(self, raw_data: str) -> List[PhishingEntry]:

@@ -6,4 +6,4 @@ from phishing_web_collector.taxonomies import RefreshInterval
 class BinaryDefenceIpFeed(URLListFeedProvider):
     URL = "https://www.binarydefense.com/banlist.txt"
     FEED_TYPE = FeedSource.BINARY_DEFENCE_IP
-    INTERVAL = RefreshInterval.DAILY
+    INTERVAL = RefreshInterval.DAILY.value

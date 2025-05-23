@@ -9,7 +9,7 @@ from phishing_web_collector.taxonomies import RefreshInterval
 class UrlHausFeed(CSVFeedProvider):
     URL = "https://urlhaus.abuse.ch/downloads/csv_recent/"
     FEED_TYPE = FeedSource.URL_HAUS
-    INTERVAL = RefreshInterval.HOURLY
+    INTERVAL = RefreshInterval.HOURLY.value
     DELIMITER = ","
     HEADERS = [
         "id", "dateadded", "url", "url_status",

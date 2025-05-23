@@ -6,4 +6,4 @@ from phishing_web_collector.taxonomies import RefreshInterval
 class C2TrackerIpFeed(URLListFeedProvider):
     URL = "https://github.com/montysecurity/C2-Tracker/blob/main/data/all.txt"
     FEED_TYPE = FeedSource.C2_TRACKER_IP
-    INTERVAL = RefreshInterval.WEEKLY
+    INTERVAL = RefreshInterval.WEEKLY.value
