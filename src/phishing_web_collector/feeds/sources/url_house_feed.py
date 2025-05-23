@@ -12,21 +12,23 @@ class UrlHausFeed(CSVFeedProvider):
     INTERVAL = RefreshInterval.HOURLY.value
     DELIMITER = ","
     HEADERS = [
-        "id", "dateadded", "url", "url_status",
-        "last_online", "threat", "tags",
-        "urlhaus_link", "reporter"
+        "id",
+        "dateadded",
+        "url",
+        "url_status",
+        "last_online",
+        "threat",
+        "tags",
+        "urlhaus_link",
+        "reporter",
     ]
 
     def parse_row(
         self, item: Dict[str, str], fetch_time: datetime
     ) -> Optional[PhishingEntry]:
-        try:
-            return PhishingEntry(
-                url=item["url"],
-                source=self.FEED_TYPE,
-                fetch_date=fetch_time,
-                reference_url=item["urlhaus_link"],
-            )
-        except Exception as e:
-            print(f"Missing key in URLHaus feed: {e}. {item}")
-            return None
+        return PhishingEntry(
+            url=item["url"],
+            source=self.FEED_TYPE,
+            fetch_date=fetch_time,
+            reference_url=item["urlhaus_link"],
+        )
