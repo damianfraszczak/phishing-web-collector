@@ -10,7 +10,6 @@ manager = pwc.FeedManager(
         pwc.FeedSource.C2_INTEL_DOMAIN,
         pwc.FeedSource.C2_TRACKER_IP,
         pwc.FeedSource.CERT_PL,
-        pwc.FeedSource.ELLIO_IP,
         pwc.FeedSource.GREEN_SNOW_IP,
         pwc.FeedSource.MIRAI_SECURITY_IP,
         pwc.FeedSource.OPEN_PHISH,
@@ -24,9 +23,8 @@ manager = pwc.FeedManager(
         pwc.FeedSource.URL_ABUSE,
         pwc.FeedSource.URL_HAUS,
         pwc.FeedSource.VALDIN,
-
     ],
-    storage_path="feeds_data"
+    storage_path="feeds_data",
 )
 
 manager.sync_refresh_all()
