@@ -42,8 +42,7 @@ def get_ip_from_url(url: str) -> str:
 def remove_none_from_dict(d):
     """Recursively remove keys with None values from a dictionary."""
     if isinstance(d, dict):
-        return {k: remove_none_from_dict(v) for k, v in d.items() if
-                v is not None}
+        return {k: remove_none_from_dict(v) for k, v in d.items() if v is not None}
     elif isinstance(d, list):
         return [remove_none_from_dict(i) for i in d]
     else:
@@ -56,20 +55,20 @@ async def fetch_url(url, headers=None, ssl_verify=False, timeout=10):
 
     ssl_context = None
     if not ssl_verify:
-        ssl_context = ssl._create_unverified_context()
+        ssl_context = ssl._create_unverified_context()  # nosec B323
 
     timeout_obj = aiohttp.ClientTimeout(total=timeout)
     connector = aiohttp.TCPConnector(ssl=ssl_context)
 
     try:
-        async with aiohttp.ClientSession(connector=connector,
-                                         timeout=timeout_obj) as session:
+        async with aiohttp.ClientSession(
+            connector=connector, timeout=timeout_obj
+        ) as session:
             async with session.get(url, headers=headers) as response:
                 if response.status == 200:
                     return await response.text(encoding="utf-8")
-                logger.warning(
-                    f"Failed to fetch {url} - Status: {response.status}")
-    except Exception as e:
+                logger.warning(f"Failed to fetch {url} - Status: {response.status}")
+    except Exception as e:  # noqa
         logger.error(f"Error fetching {url}: {e}")
 
     return None
