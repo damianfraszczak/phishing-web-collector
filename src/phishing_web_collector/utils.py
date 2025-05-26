@@ -1,3 +1,4 @@
+import asyncio
 import ipaddress
 import logging
 import socket
@@ -72,3 +73,19 @@ async def fetch_url(url, headers=None, ssl_verify=False, timeout=10):
         logger.error(f"Error fetching {url}: {e}")
 
     return None
+
+
+def run_async_as_sync(callback, *args, **kwargs):
+    """Run an asynchronous function synchronously."""
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
+    coro = callback(*args, **kwargs)
+
+    if loop.is_running():
+        return asyncio.ensure_future(coro)
+    else:
+        return loop.run_until_complete(coro)

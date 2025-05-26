@@ -28,7 +28,10 @@ from phishing_web_collector.feeds.sources import (
     ValdinFeed,
 )
 from phishing_web_collector.models import FeedSource, PhishingEntry
-from phishing_web_collector.utils import remove_none_from_dict
+from phishing_web_collector.utils import (
+    remove_none_from_dict,
+    run_async_as_sync,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -94,7 +97,7 @@ class FeedManager:
 
     def sync_refresh_all(self, force: bool = False):
         """Refresh all configured feeds_data synchronously"""
-        asyncio.run(self.refresh_all(force))
+        run_async_as_sync(self.refresh_all, force)
 
     async def retrieve_all(self) -> List[PhishingEntry]:
         """Retrieve all phishing entries from all feeds_data asynchronously."""
@@ -106,7 +109,7 @@ class FeedManager:
 
     def sync_retrieve_all(self) -> List[PhishingEntry]:
         """Retrieve all phishing entries from all feeds_data synchronously."""
-        return asyncio.run(self.retrieve_all())
+        return run_async_as_sync(self.retrieve_all)
 
     def export_to_json(self, filename: str = "phishing_data.json"):
         """Export all phishing data to a single JSON file, with the phishing URL as the key."""

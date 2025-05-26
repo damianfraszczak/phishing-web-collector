@@ -9,7 +9,7 @@ Its ease of use, scalability, and support for various data formats enhance the t
 
 
 ## Features
-- Integration of 20 Different Sources: Reduces the need to maintain multiple integrations.
+- Integration of 19 Different Sources: Reduces the need to maintain multiple integrations.
 - Local Data Collection: Supports building and maintaining local phishing databases.
 - Data Export: Allows exporting all collected data in a unified JSON format.
 - Asynchronous Performance: Uses asyncio for faster, simultaneous data collection.
