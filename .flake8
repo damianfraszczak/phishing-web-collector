@@ -16,6 +16,8 @@ ignore =
     D101,
     # Missing docstring in public method
     D102,
+    D103
+    # Missing docstring in public function,
     # Missing docstring in public package
     D104,
     # Missing docstring in magic method
