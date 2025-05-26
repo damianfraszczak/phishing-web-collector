@@ -29,6 +29,7 @@ from phishing_web_collector.feeds.sources import (
 )
 from phishing_web_collector.models import FeedSource, PhishingEntry
 from phishing_web_collector.utils import (
+    load_json,
     remove_none_from_dict,
     run_async_as_sync,
 )
@@ -121,8 +122,7 @@ class FeedManager:
     def load_from_json(self, filename: str = "phishing_data.json"):
         """Import phishing data from a single JSON file, with the phishing URL as the key"""
         try:
-            with open(filename, "r") as f:
-                data = json.load(f)
+            data = load_json(filename)
 
             entries = []
             for url, records in data.items():
@@ -137,6 +137,7 @@ class FeedManager:
                     entries.append(entry)
             self.entries = entries
             logger.info(f"Imported phishing data from {filename}")
+
         except Exception as e:  # noqa
             logger.error(f"Failed to import phishing data from {filename}: {e}")
 

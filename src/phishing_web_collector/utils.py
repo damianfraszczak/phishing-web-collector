@@ -1,5 +1,6 @@
 import asyncio
 import ipaddress
+import json
 import logging
 import socket
 import ssl
@@ -89,3 +90,8 @@ def run_async_as_sync(callback, *args, **kwargs):
         return asyncio.ensure_future(coro)
     else:
         return loop.run_until_complete(coro)
+
+
+def load_json(filename):
+    with open(filename, "r") as f:
+        return json.load(f)

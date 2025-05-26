@@ -11,7 +11,7 @@ class URLListFeedProvider(FileBasedFeed):
         entries = [
             entry
             for line in raw_data.splitlines()
-            if not line.startswith("#")
+            if line.strip() and not line.strip().startswith("#")
             if (entry := self.parse_line(line.strip(), fetch_time))
         ]
         return entries
