@@ -16,7 +16,7 @@ class JSONFeed(FileBasedFeed):
     def parse_feed(self, raw_data: str) -> List[PhishingEntry]:
         try:
             data = json.loads(raw_data)
-            fetch_time = datetime.utcnow()
+            fetch_time = datetime.now()
             return [
                 entry for item in data if (entry := self.parse_entry(item, fetch_time))
             ]

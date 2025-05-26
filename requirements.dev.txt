@@ -1,6 +1,7 @@
 pytest
 pytest-cov
 pytest-mock
+pytest-asyncio
 sphinx
 sphinx_rtd_theme
 myst-parser

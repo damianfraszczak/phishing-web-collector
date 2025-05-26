@@ -32,8 +32,8 @@ entries = manager.sync_retrieve_all()
 
 phishing_domains = [pwc.get_domain_from_url(item.url) for item in entries]
 
-with open("phishing_domains.csv", mode="w", newline="") as file:
+with open("phishing_domains.csv", mode="w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
-    writer.writerow(["Domain"])  # nagłówek
+    writer.writerow(["Domain"])
     for domain in phishing_domains:
         writer.writerow([domain])

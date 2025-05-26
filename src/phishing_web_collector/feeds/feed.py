@@ -1,4 +1,3 @@
-import asyncio
 import logging
 import time
 from abc import ABC, abstractmethod
@@ -8,6 +7,7 @@ from typing import List
 
 from phishing_web_collector.models import FeedSource, PhishingEntry
 from phishing_web_collector.taxonomies import RefreshInterval
+from phishing_web_collector.utils import run_async_as_sync
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ class AbstractFeed(ABC):
         self.storage_path.mkdir(exist_ok=True, parents=True)
 
     def get_feed_path(self) -> Path:
-        timestamp = datetime.utcnow().strftime("%Y-%m-%d_%H")
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H")
         return (
             self.storage_path
             / f"{self.FEED_TYPE.value}_{timestamp}.{self.FILE_EXTENSION}"
@@ -56,7 +56,7 @@ class AbstractFeed(ABC):
             logger.info(f"Skipping refresh, feed is up to date: {self.FEED_TYPE.value}")
 
     def retrieve(self) -> List[PhishingEntry]:
-        asyncio.run(self.refresh())
+        run_async_as_sync(self.refresh)
         all_files = sorted(self.storage_path.iterdir(), key=lambda f: f.stat().st_mtime)
         if not all_files:
             logger.warning(f"No data found for feed: {self.FEED_TYPE.value}")
