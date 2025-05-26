@@ -23,7 +23,7 @@ class CSVFeedProvider(FileBasedFeed):
         reader = csv.DictReader(
             raw_data_clean, delimiter=self.DELIMITER, fieldnames=self.HEADERS
         )
-        fetch_time = datetime.utcnow()
+        fetch_time = datetime.now()
 
         for row in reader:
             entry = self.parse_row(row, fetch_time)

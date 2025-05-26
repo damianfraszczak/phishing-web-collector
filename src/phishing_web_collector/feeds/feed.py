@@ -22,7 +22,7 @@ class AbstractFeed(ABC):
         self.storage_path.mkdir(exist_ok=True, parents=True)
 
     def get_feed_path(self) -> Path:
-        timestamp = datetime.utcnow().strftime("%Y-%m-%d_%H")
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H")
         return (
             self.storage_path
             / f"{self.FEED_TYPE.value}_{timestamp}.{self.FILE_EXTENSION}"

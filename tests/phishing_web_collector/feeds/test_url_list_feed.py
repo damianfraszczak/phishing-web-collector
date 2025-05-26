@@ -30,7 +30,7 @@ def test_parse_feed_empty(provider):
 
 
 def test_parse_line_returns_entry(provider):
-    now = datetime.utcnow()
+    now = datetime.now()
     entry = provider.parse_line("http://malicious.com", now)
     assert isinstance(entry, PhishingEntry)
     assert entry.url == "http://malicious.com"

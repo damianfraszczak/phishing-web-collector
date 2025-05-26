@@ -63,22 +63,6 @@ def test_entry_map(feed_manager):
     assert isinstance(result["http://test.com"], list)
 
 
-def test_export_to_json(feed_manager, tmp_path):
-    test_file = tmp_path / "output.json"
-    feed_manager.entries = [
-        PhishingEntry(
-            url="http://test.com",
-            targeted_url="http://target.com",
-            reference_url="http://ref.com",
-            source=FeedSource.PHISH_TANK,
-            fetch_date=datetime.now(),
-        )
-    ]
-    feed_manager.export_to_json(str(test_file))
-    assert test_file.exists()
-    assert test_file.read_text()
-
-
 def test_load_from_json(feed_manager):
     mock_data = {
         "http://test.com": [

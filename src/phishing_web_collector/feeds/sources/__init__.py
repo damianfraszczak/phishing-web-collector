@@ -3,12 +3,14 @@
 from phishing_web_collector.feeds.sources.binary_defence_ip_feed import (
     BinaryDefenceIpFeed,
 )
-from phishing_web_collector.feeds.sources.blocklist_de_ip import (
+from phishing_web_collector.feeds.sources.blocklist_de_ip_feed import (
     BlockListDeIpFeed,
 )
 from phishing_web_collector.feeds.sources.botvrij_feed import BotvrijFeed
 from phishing_web_collector.feeds.sources.c2_intel_feed import C2IntelFeed
-from phishing_web_collector.feeds.sources.c2_tracker_ip import C2TrackerIpFeed
+from phishing_web_collector.feeds.sources.c2_tracker_ip_feed import (
+    C2TrackerIpFeed,
+)
 from phishing_web_collector.feeds.sources.cert_pl_feed import CertPLFeed
 from phishing_web_collector.feeds.sources.greensnow_ip_feed import (
     GreenSnowIpFeed,

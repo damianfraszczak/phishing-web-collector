@@ -7,7 +7,7 @@ from phishing_web_collector.models import PhishingEntry
 
 class URLListFeedProvider(FileBasedFeed):
     def parse_feed(self, raw_data: str) -> List[PhishingEntry]:
-        fetch_time = datetime.utcnow()
+        fetch_time = datetime.now()
         entries = [
             entry
             for line in raw_data.splitlines()
