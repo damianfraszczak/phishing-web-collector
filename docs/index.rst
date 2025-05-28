@@ -6,7 +6,7 @@
 Welcome to PhishingWebCollector documentation!
 =====================================
 
-`PhishingWebCollector` is a Python library that integrates 20 phishing feeds into one solution and offers a platform for collecting and managing malicious website data.
+`PhishingWebCollector` is a Python library that integrates 19 phishing feeds into one solution and offers a platform for collecting and managing malicious website data.
 Suitable for practical cybersecurity applications, like updating local blacklists, and research, such as building phishing detection datasets.
 It utilizes the asyncio module for efficient parallel processing and data collection.
 Users can gather historical data from free feeds to construct extensive datasets without costly API subscriptions.

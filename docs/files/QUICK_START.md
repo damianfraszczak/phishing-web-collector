@@ -34,8 +34,9 @@ and as a results you will get the list of phishing domains.
 All modules are exported into main package, so you can use import module and invoke them directly.
 
 ## Jupyter Notebook Usage
-If you would like to test ``PhishingWebCollector`` functionalities without installing it on your machine consider using the preconfigured [Jupyter notebook](jupyter/collect_phishing_domains.ipynb). It will show you how to collect phishing domains from all available sources and save them into a CSV file. You can run it in your browser without any installation using [Google Colab](https://colab.research.google.com/github/PhishingWebCollector/phishing-web-collector/blob/main/jupyter/collect_phishing_domains.ipynb).
+If you would like to test ``PhishingWebCollector`` functionalities without installing it on your machine consider using the preconfigured [Jupyter notebook](docs/files/jupyter/collect_phishing_domains.ipynb). It will show you how to collect phishing domains from all available sources and save them into a CSV file. You can run it in your browser without any installation using [Google Colab](https://colab.research.google.com/github/damianfraszczak/phishing-web-collector/blob/master/docs/files/jupyter/collect_phishing_domains.ipynb).
 
-To check how asynchronous data collection is faster than synchronous one, you can run the [asynchronous notebook](jupyter/sync_vs_async_benchmark.ipynb) benchmark.
+To check how asynchronous data collection is faster than synchronous one, you can run the [asynchronous benchmark](docs/files/jupyter/sync_vs_async_benchmark.ipynb).
+
 ## Docker usage
 If you want to use PhishingWebCollector in a Docker container, please check this [README](docker/README.md) file.
