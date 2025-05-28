@@ -12,21 +12,21 @@
     </a>
     <img alt="Downloads" src="https://pepy.tech/badge/phishing-web-collector">
     <img alt="GitHub license" src="https://img.shields.io/github/license/damianfraszczak/phishing-web-collector.svg" href="https://github.com/damianfraszczak/phishing-web-collector/blob/master/LICENSE">
-    <img alt="Documentation Status" src="https://readthedocs.org/projects/phishing-web-collector/badge/?version=latest" href="https://phishing-web-collector.readthedocs.io/en/latest/?badge=latest">
+    <img alt="Documentation Status" src="https://readthedocs.org/projects/phishingwebcollector/badge/?version=latest" href="https://phishingwebcollector.readthedocs.io/en/latest/?badge=latest">
 </p>
 
 <p align="center">
   <a href="https://github.com/damianfraszczak/phishing-web-collector?tab=readme-ov-file#why-PhishingWebCollector">✨ Why PhishingWebCollector?</a>
   <a href="https://github.com/damianfraszczak/phishing-web-collector?tab=readme-ov-file#features">📦 Features</a>
   <a href="https://github.com/damianfraszczak/phishing-web-collector/blob/master/docs/files/QUICK_START.md">🚀 Quick Start</a>
-   <a href="https://phishing-web-collector.readthedocs.io/">📮 Documentation</a>
+  <a href="https://phishing-web-collector.readthedocs.io/">📮 Documentation</a>
   <a href="https://github.com/damianfraszczak/phishing-web-collector/blob/master/docs/files/jupyter">📓 Jupyter Notebook examples</a>
   <a href="LICENSE">🔑 License</a>
 </p>
 
 
 ## Overview
-`PhishingWebCollector` is a Python library that integrates 20 phishing feeds into one solution and offers a platform for collecting and managing malicious website data.
+`PhishingWebCollector` is a Python library that integrates 19 phishing feeds into one solution and offers a platform for collecting and managing malicious website data.
 Suitable for practical cybersecurity applications, like updating local blacklists, and research, such as building phishing detection datasets.
 It utilizes the asyncio module for efficient parallel processing and data collection.
 Users can gather historical data from free feeds to construct extensive datasets without costly API subscriptions.
@@ -35,7 +35,6 @@ Its ease of use, scalability, and support for various data formats enhance the t
 
 
 * **Free software:** MIT license,
-* **Documentation:** https://phishing-web-collector.readthedocs.io/en/latest/,
 * **Python versions:** 3.9 | 3.10 | 3.11
 * **Tested OS:** Windows, Ubuntu, Fedora and CentOS. **However, that does not mean it does not work on others.**
 * **All-in-One Solution::**  PhishingWebCollector is an all-in-one solution that allows for the collection of a wide range of information about websites.
@@ -107,7 +106,7 @@ and as a results you will get the list of phishing domains.
 All modules are exported into main package, so you can use import module and invoke them directly.
 
 ## Jupyter Notebook Usage
-If you would like to test ``PhishingWebCollector`` functionalities without installing it on your machine consider using the preconfigured [Jupyter notebook](docs/files/jupyter/collect_phishing_domains.ipynb). It will show you how to collect phishing domains from all available sources and save them into a CSV file. You can run it in your browser without any installation using [Google Colab](https://colab.research.google.com/github/PhishingWebCollector/phishing-web-collector/blob/main/jupyter/collect_phishing_domains.ipynb).
+If you would like to test ``PhishingWebCollector`` functionalities without installing it on your machine consider using the preconfigured [Jupyter notebook](docs/files/jupyter/collect_phishing_domains.ipynb). It will show you how to collect phishing domains from all available sources and save them into a CSV file. You can run it in your browser without any installation using [Google Colab](https://colab.research.google.com/github/damianfraszczak/phishing-web-collector/blob/master/docs/files/jupyter/collect_phishing_domains.ipynb).
 
 To check how asynchronous data collection is faster than synchronous one, you can run the [asynchronous benchmark](docs/files/jupyter/sync_vs_async_benchmark.ipynb).
 ## Docker usage
