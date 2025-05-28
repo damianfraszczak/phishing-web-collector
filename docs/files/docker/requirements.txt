@@ -1,2 +1,2 @@
-phishing-web-collector
+phishing-web-collector>=0.1.3
 aiohttp
