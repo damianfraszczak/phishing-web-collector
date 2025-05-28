@@ -12,14 +12,14 @@
     </a>
     <img alt="Downloads" src="https://pepy.tech/badge/phishing-web-collector">
     <img alt="GitHub license" src="https://img.shields.io/github/license/damianfraszczak/phishing-web-collector.svg" href="https://github.com/damianfraszczak/phishing-web-collector/blob/master/LICENSE">
-    <img alt="Documentation Status" src="https://readthedocs.org/projects/phishing-web-collector/badge/?version=latest" href="https://phishing-web-collector.readthedocs.io/en/latest/?badge=latest">
+    <img alt="Documentation Status" src="https://readthedocs.org/projects/phishingwebcollector/badge/?version=latest" href="https://phishingwebcollector.readthedocs.io/en/latest/?badge=latest">
 </p>
 
 <p align="center">
   <a href="https://github.com/damianfraszczak/phishing-web-collector?tab=readme-ov-file#why-PhishingWebCollector">✨ Why PhishingWebCollector?</a>
   <a href="https://github.com/damianfraszczak/phishing-web-collector?tab=readme-ov-file#features">📦 Features</a>
   <a href="https://github.com/damianfraszczak/phishing-web-collector/blob/master/docs/files/QUICK_START.md">🚀 Quick Start</a>
-   <a href="https://phishing-web-collector.readthedocs.io/">📮 Documentation</a>
+  <a href="https://phishing-web-collector.readthedocs.io/">📮 Documentation</a>
   <a href="https://github.com/damianfraszczak/phishing-web-collector/blob/master/docs/files/jupyter">📓 Jupyter Notebook examples</a>
   <a href="LICENSE">🔑 License</a>
 </p>
