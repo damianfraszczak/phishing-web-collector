@@ -8,6 +8,7 @@ class FeedSource(Enum):
     C2_INTEL_DOMAIN = "C2IntelDomain"
     C2_TRACKER_IP = "C2TrackerIp"
     CERT_PL = "CertPl"
+    DANGEROUS_DOMAINS = "DangerousDomains"
     # ELLIO_IP = "EllioIP"
     GREEN_SNOW_IP = "GreenSnowIp"
     MIRAI_SECURITY_IP = "MiraiSecurityIp"

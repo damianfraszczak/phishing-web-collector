@@ -12,6 +12,9 @@ from phishing_web_collector.feeds.sources.c2_tracker_ip_feed import (
     C2TrackerIpFeed,
 )
 from phishing_web_collector.feeds.sources.cert_pl_feed import CertPLFeed
+from phishing_web_collector.feeds.sources.dangerous_domains_feed import (
+    DangerousDomainsFeed,
+)
 from phishing_web_collector.feeds.sources.greensnow_ip_feed import (
     GreenSnowIpFeed,
 )
