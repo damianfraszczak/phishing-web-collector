@@ -10,6 +10,7 @@ manager = pwc.FeedManager(
         pwc.FeedSource.C2_INTEL_DOMAIN,
         pwc.FeedSource.C2_TRACKER_IP,
         pwc.FeedSource.CERT_PL,
+        pwc.FeedSource.DANGEROUS_DOMAINS,
         pwc.FeedSource.GREEN_SNOW_IP,
         pwc.FeedSource.MIRAI_SECURITY_IP,
         pwc.FeedSource.OPEN_PHISH,
