@@ -6,6 +6,7 @@ from typing import Dict, List, Optional, Type
 
 from phishing_web_collector.feeds.feed import AbstractFeed
 from phishing_web_collector.feeds.sources import (
+    AdGuardHomeFeed,
     BinaryDefenceIpFeed,
     BlockListDeIpFeed,
     BotvrijFeed,
@@ -14,12 +15,12 @@ from phishing_web_collector.feeds.sources import (
     CertPLFeed,
     DangerousDomainsFeed,
     GreenSnowIpFeed,
+    MalwareWorldFeed,
     MiraiSecurityIpFeed,
     OpenPhishFeed,
     PhishingArmyFeed,
     PhishingDatabaseFeed,
     PhishStatsApiFeed,
-    PhishStatsFeed,
     PhishTankFeed,
     ProofPointIpFeed,
     ThreatViewFeed,
@@ -34,6 +35,7 @@ from phishing_web_collector.utils import load_json, remove_none_from_dict
 logger = logging.getLogger(__name__)
 
 SOURCES_MAP: Dict[FeedSource, Type[AbstractFeed]] = {
+    FeedSource.AD_GUARD_HOME: AdGuardHomeFeed,
     FeedSource.BINARY_DEFENCE_IP: BinaryDefenceIpFeed,
     FeedSource.BLOCKLIST_DE_IP: BlockListDeIpFeed,
     FeedSource.BOTVRIJ: BotvrijFeed,
@@ -42,11 +44,12 @@ SOURCES_MAP: Dict[FeedSource, Type[AbstractFeed]] = {
     FeedSource.CERT_PL: CertPLFeed,
     FeedSource.DANGEROUS_DOMAINS: DangerousDomainsFeed,
     FeedSource.GREEN_SNOW_IP: GreenSnowIpFeed,
+    FeedSource.MALWARE_WORLD: MalwareWorldFeed,
     FeedSource.MIRAI_SECURITY_IP: MiraiSecurityIpFeed,
     FeedSource.OPEN_PHISH: OpenPhishFeed,
     FeedSource.PHISHING_ARMY: PhishingArmyFeed,
     FeedSource.PHISHING_DATABASE: PhishingDatabaseFeed,
-    FeedSource.PHISH_STATS: PhishStatsFeed,
+    # FeedSource.PHISH_STATS: PhishStatsFeed,
     FeedSource.PHISH_STATS_API: PhishStatsApiFeed,
     FeedSource.PHISH_TANK: PhishTankFeed,
     FeedSource.PROOF_POINT_IP: ProofPointIpFeed,

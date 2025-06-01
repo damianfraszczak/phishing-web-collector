@@ -4,6 +4,7 @@ import phishing_web_collector as pwc
 
 manager = pwc.FeedManager(
     sources=[
+        pwc.FeedSource.AD_GUARD_HOME,
         pwc.FeedSource.BINARY_DEFENCE_IP,
         pwc.FeedSource.BLOCKLIST_DE_IP,
         pwc.FeedSource.BOTVRIJ,
@@ -12,6 +13,7 @@ manager = pwc.FeedManager(
         pwc.FeedSource.CERT_PL,
         pwc.FeedSource.DANGEROUS_DOMAINS,
         pwc.FeedSource.GREEN_SNOW_IP,
+        pwc.FeedSource.MALWARE_WORLD,
         pwc.FeedSource.MIRAI_SECURITY_IP,
         pwc.FeedSource.OPEN_PHISH,
         pwc.FeedSource.PHISHING_ARMY,

@@ -2,13 +2,13 @@ from datetime import datetime
 from typing import Dict, Optional
 
 from phishing_web_collector.feeds.csv_feed import CSVFeedProvider
-from phishing_web_collector.models import FeedSource, PhishingEntry
+from phishing_web_collector.models import PhishingEntry
 from phishing_web_collector.taxonomies import RefreshInterval
 
 
 class PhishStatsFeed(CSVFeedProvider):
     URL = "https://phishstats.info/phish_score.csv"
-    FEED_TYPE = FeedSource.PHISH_STATS
+    FEED_TYPE = "FeedSource.PHISH_STATS"
     INTERVAL = RefreshInterval.EVERY_2_HOURS.value
     DELIMITER = ","
     HEADERS = ["Date", "Score", "URL", "IP"]

@@ -1,5 +1,8 @@
 # flake8: noqa
 
+from phishing_web_collector.feeds.sources.ad_guard_home_feed import (
+    AdGuardHomeFeed,
+)
 from phishing_web_collector.feeds.sources.binary_defence_ip_feed import (
     BinaryDefenceIpFeed,
 )
@@ -17,6 +20,9 @@ from phishing_web_collector.feeds.sources.dangerous_domains_feed import (
 )
 from phishing_web_collector.feeds.sources.greensnow_ip_feed import (
     GreenSnowIpFeed,
+)
+from phishing_web_collector.feeds.sources.malware_world_feed import (
+    MalwareWorldFeed,
 )
 from phishing_web_collector.feeds.sources.mirai_security_ip_feed import (
     MiraiSecurityIpFeed,

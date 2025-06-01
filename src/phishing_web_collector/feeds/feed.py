@@ -76,8 +76,9 @@ class AbstractFeed(ABC):
 
         now = time.time()
         interval_sec = self.INTERVAL
+        should_refresh = (now - file_mtime) > interval_sec
 
-        return (now - file_mtime) > interval_sec
+        return should_refresh
 
     def _process_raw_data(self, raw_data: str) -> str:
         if raw_data:
