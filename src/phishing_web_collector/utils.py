@@ -13,7 +13,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 logger = logging.getLogger(__name__)
 
 DEFAULT_HEADERS = {"User-Agent": "Mozilla/5.0"}
-DEFAULT_TIMEOUT = 30
+DEFAULT_TIMEOUT = 60
 
 
 def valid_ip(host: str) -> bool:

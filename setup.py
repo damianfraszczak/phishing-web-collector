@@ -42,7 +42,7 @@ setup(
         "Programming Language :: Python :: 3",
     ],
     keywords="phishing_websites malicious_websites phishing",
-    install_requires=["aiohttp"],
+    install_requires=["aiohttp", "requests"],
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     extras_require={
