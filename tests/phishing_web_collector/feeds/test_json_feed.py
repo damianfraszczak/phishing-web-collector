@@ -7,7 +7,7 @@ from phishing_web_collector.models import FeedSource, PhishingEntry
 
 
 class DummyJSONFeed(JSONFeed):
-    FEED_TYPE = FeedSource.PHISH_STATS
+    FEED_TYPE = FeedSource.PHISH_TANK
 
     def parse_entry(self, item, fetch_time):
         if "url" in item:

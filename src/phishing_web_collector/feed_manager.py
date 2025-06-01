@@ -50,7 +50,7 @@ SOURCES_MAP: Dict[FeedSource, Type[AbstractFeed]] = {
     FeedSource.PHISHING_ARMY: PhishingArmyFeed,
     FeedSource.PHISHING_DATABASE: PhishingDatabaseFeed,
     # FeedSource.PHISH_STATS: PhishStatsFeed,
-    FeedSource.PHISH_STATS_API: PhishStatsApiFeed,
+    FeedSource.PHISH_STATS: PhishStatsApiFeed,
     FeedSource.PHISH_TANK: PhishTankFeed,
     FeedSource.PROOF_POINT_IP: ProofPointIpFeed,
     FeedSource.THREAT_VIEW_DOMAIN: ThreatViewFeed,

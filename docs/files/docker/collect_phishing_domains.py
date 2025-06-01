@@ -18,7 +18,7 @@ manager = pwc.FeedManager(
         pwc.FeedSource.OPEN_PHISH,
         pwc.FeedSource.PHISHING_ARMY,
         pwc.FeedSource.PHISHING_DATABASE,
-        pwc.FeedSource.PHISH_STATS_API,
+        pwc.FeedSource.PHISH_STATS,
         pwc.FeedSource.PHISH_TANK,
         pwc.FeedSource.PROOF_POINT_IP,
         pwc.FeedSource.THREAT_VIEW_DOMAIN,
