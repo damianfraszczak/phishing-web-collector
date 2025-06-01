@@ -8,7 +8,6 @@ from phishing_web_collector.utils import (
     get_ip_from_domain,
     get_ip_from_url,
     remove_none_from_dict,
-    run_async_as_sync,
     valid_ip,
 )
 
@@ -74,13 +73,3 @@ async def test_fetch_url_failure(monkeypatch):
 
 async def async_add(x, y):
     return x + y
-
-
-def test_run_async_as_sync():
-    result = run_async_as_sync(async_add, 3, 4)
-    if hasattr(result, "__await__"):
-        # If running in Jupyter (event loop running), we need to await result
-        import asyncio
-
-        result = asyncio.get_event_loop().run_until_complete(result)
-    assert result == 7

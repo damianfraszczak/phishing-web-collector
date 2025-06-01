@@ -130,7 +130,8 @@ class FeedManager:
 
     async def retrieve_all(self) -> List["PhishingEntry"]:
         """Asynchronously retrieve entries from all feeds."""
-        results = await asyncio.gather(*(p.retrieve() for p in self.providers))
+        coros = [provider.retrieve() for provider in self.providers]
+        results = await asyncio.gather(*coros)
         self.entries = [entry for r in results for entry in r]
         return self.entries
 
