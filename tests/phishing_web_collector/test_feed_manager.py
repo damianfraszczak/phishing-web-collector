@@ -1,5 +1,5 @@
 from datetime import datetime
-from unittest.mock import MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
@@ -12,9 +12,24 @@ def mock_feed():
     async def mock_refresh(force):
         return None
 
+    def mock_refresh_sync(force):
+        return None
+
     mock = MagicMock()
     mock.refresh = mock_refresh
-    mock.retrieve.return_value = [
+    mock.refresh_sync = mock_refresh_sync
+    mock.retrieve = AsyncMock(
+        return_value=[
+            PhishingEntry(
+                url="http://test.com",
+                targeted_url="http://target.com",
+                reference_url="http://ref.com",
+                source=FeedSource.PHISH_TANK,
+                fetch_date=datetime.now(),
+            )
+        ]
+    )
+    mock.retrieve_sync.return_value = [
         PhishingEntry(
             url="http://test.com",
             targeted_url="http://target.com",

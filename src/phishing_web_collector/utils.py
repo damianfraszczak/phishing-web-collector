@@ -1,4 +1,3 @@
-import asyncio
 import ipaddress
 import json
 import logging
@@ -7,7 +6,10 @@ import ssl
 from urllib.parse import urlparse
 
 import aiohttp
+import requests
+import urllib3
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 logger = logging.getLogger(__name__)
 
 DEFAULT_HEADERS = {"User-Agent": "Mozilla/5.0"}
@@ -76,20 +78,19 @@ async def fetch_url(url, headers=None, ssl_verify=False, timeout=10):
     return None
 
 
-def run_async_as_sync(callback, *args, **kwargs):
-    """Run an asynchronous function synchronously."""
+def fetch_url_sync(url, headers=None, ssl_verify=False, timeout=10):
+    """Fetch the given URL synchronously and return the response text or None on failure."""
+    headers = {**DEFAULT_HEADERS, **(headers or {})}
     try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-
-    coro = callback(*args, **kwargs)
-
-    if loop.is_running():
-        return asyncio.ensure_future(coro)
-    else:
-        return loop.run_until_complete(coro)
+        response = requests.get(
+            url, headers=headers, verify=ssl_verify, timeout=timeout
+        )
+        if response.status_code == 200:
+            return response.text
+        logger.warning(f"Failed to fetch {url} - Status: {response.status_code}")
+    except Exception as e:  # noqa
+        logger.error(f"Error fetching {url}: {e}")
+    return None
 
 
 def load_json(filename):

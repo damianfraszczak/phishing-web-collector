@@ -2,20 +2,22 @@ from enum import Enum
 
 
 class FeedSource(Enum):
+    AD_GUARD_HOME = "AdGuardHomeFeed"
     BINARY_DEFENCE_IP = "BinaryDefenceIP"
     BLOCKLIST_DE_IP = "BlocklistDeIP"
     BOTVRIJ = "Botvrij"
     C2_INTEL_DOMAIN = "C2IntelDomain"
     C2_TRACKER_IP = "C2TrackerIp"
     CERT_PL = "CertPl"
+    DANGEROUS_DOMAINS = "DangerousDomains"
     # ELLIO_IP = "EllioIP"
     GREEN_SNOW_IP = "GreenSnowIp"
+    MALWARE_WORLD = "MalwareWorld"
     MIRAI_SECURITY_IP = "MiraiSecurityIp"
     OPEN_PHISH = "OpenPhish"
     PHISHING_ARMY = "PhishingArmy"
     PHISHING_DATABASE = "PhishingDatabase"
     PHISH_STATS = "PhishStats"
-    PHISH_STATS_API = "PhishStatsApi"
     PHISH_TANK = "PhishTank"
     PROOF_POINT_IP = "ProofPointIp"
     THREAT_VIEW_DOMAIN = "ThreatViewDomain"
