@@ -29,11 +29,7 @@ from phishing_web_collector.feeds.sources import (
     ValdinFeed,
 )
 from phishing_web_collector.models import FeedSource, PhishingEntry
-from phishing_web_collector.utils import (
-    load_json,
-    remove_none_from_dict,
-    run_async_as_sync,
-)
+from phishing_web_collector.utils import load_json, remove_none_from_dict
 
 logger = logging.getLogger(__name__)
 
@@ -94,26 +90,6 @@ class FeedManager:
             or hash(tuple(self.entries)) != self._entries_hash
         )
 
-    async def refresh_all(self, force: bool = False):
-        """Refresh all configured feeds_data asynchronously."""
-        await asyncio.gather(*(provider.refresh(force) for provider in self.providers))
-
-    def sync_refresh_all(self, force: bool = False):
-        """Refresh all configured feeds_data synchronously"""
-        run_async_as_sync(self.refresh_all, force)
-
-    async def retrieve_all(self) -> List[PhishingEntry]:
-        """Retrieve all phishing entries from all feeds_data asynchronously."""
-        results = await asyncio.gather(
-            *(asyncio.to_thread(provider.retrieve) for provider in self.providers)
-        )
-        self.entries = [entry for result in results for entry in result]
-        return self.entries
-
-    def sync_retrieve_all(self) -> List[PhishingEntry]:
-        """Retrieve all phishing entries from all feeds_data synchronously."""
-        return run_async_as_sync(self.retrieve_all)
-
     def export_to_json(self, filename: str = "phishing_data.json"):
         """Export all phishing data to a single JSON file, with the phishing URL as the key."""
         with open(filename, "w") as f:
@@ -145,3 +121,31 @@ class FeedManager:
 
     def find_entry(self, domain: str) -> Optional[List[PhishingEntry]]:
         return self.entry_map[domain]
+
+        # --- ASYNC ---
+
+    async def refresh_all(self, force: bool = False):
+        """Asynchronously refresh all feeds."""
+        await asyncio.gather(*(p.refresh(force) for p in self.providers))
+
+    async def retrieve_all(self) -> List["PhishingEntry"]:
+        """Asynchronously retrieve entries from all feeds."""
+        results = await asyncio.gather(*(p.retrieve() for p in self.providers))
+        self.entries = [entry for r in results for entry in r]
+        return self.entries
+
+    # --- SYNC ---
+
+    def sync_refresh_all(self, force: bool = False):
+        """Refresh synchronously all feeds."""
+        for provider in self.providers:
+            provider.refresh_sync(force)
+
+    def sync_retrieve_all(self) -> List["PhishingEntry"]:
+        """Retrieve synchronously  entries from all feeds."""
+        all_entries = []
+        for provider in self.providers:
+            entries = provider.retrieve_sync()
+            all_entries.extend(entries)
+        self.entries = all_entries
+        return self.entries
