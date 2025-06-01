@@ -13,6 +13,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 logger = logging.getLogger(__name__)
 
 DEFAULT_HEADERS = {"User-Agent": "Mozilla/5.0"}
+DEFAULT_TIMEOUT = 30
 
 
 def valid_ip(host: str) -> bool:
@@ -53,9 +54,10 @@ def remove_none_from_dict(d):
         return d
 
 
-async def fetch_url(url, headers=None, ssl_verify=False, timeout=10):
+async def fetch_url(url, headers=None, ssl_verify=False, timeout=None):
     """Fetch the given URL and return the response text or None on failure."""
     headers = {**DEFAULT_HEADERS, **(headers or {})}
+    timeout = timeout or DEFAULT_TIMEOUT
 
     ssl_context = None
     if not ssl_verify:
@@ -78,9 +80,10 @@ async def fetch_url(url, headers=None, ssl_verify=False, timeout=10):
     return None
 
 
-def fetch_url_sync(url, headers=None, ssl_verify=False, timeout=10):
+def fetch_url_sync(url, headers=None, ssl_verify=False, timeout=None):
     """Fetch the given URL synchronously and return the response text or None on failure."""
     headers = {**DEFAULT_HEADERS, **(headers or {})}
+    timeout = timeout or DEFAULT_TIMEOUT
     try:
         response = requests.get(
             url, headers=headers, verify=ssl_verify, timeout=timeout
