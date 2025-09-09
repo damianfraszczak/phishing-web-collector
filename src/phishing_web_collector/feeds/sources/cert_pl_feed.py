@@ -6,6 +6,8 @@ from phishing_web_collector.models import FeedSource, PhishingEntry
 
 
 class CertPLFeed(CSVFeedProvider):
+    """Feed provider for CERT Polska domain feed."""
+
     URL = "https://hole.cert.pl/domains/domains.csv"
     FEED_TYPE = FeedSource.CERT_PL
     DELIMITER = "\t"

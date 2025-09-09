@@ -6,6 +6,8 @@ from phishing_web_collector.models import FeedSource, PhishingEntry
 
 
 class BotvrijFeed(CSVFeedProvider):
+    """Feed provider for Botvrij block list."""
+
     URL = "https://www.botvrij.eu/data/blocklist/blocklist_domain.csv"
     FEED_TYPE = FeedSource.BOTVRIJ
     DELIMITER = ","

@@ -4,6 +4,8 @@ from phishing_web_collector.taxonomies import RefreshInterval
 
 
 class UrlAbuseFeed(URLListFeedProvider):
+    """Feed provider for URL Abuse phishing URL feed."""
+
     URL = "https://urlabuse.com/public/data/phishing_url.txt"
     FEED_TYPE = FeedSource.URL_ABUSE
     INTERVAL = RefreshInterval.HOURLY.value

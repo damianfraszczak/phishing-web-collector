@@ -9,6 +9,8 @@ from phishing_web_collector.models import PhishingEntry
 
 
 class CSVFeedProvider(FileBasedFeed):
+    """Abstract base class for CSV feed providers."""
+
     DELIMITER = ";"
     FILE_EXTENSION = "csv"
     HEADERS = None

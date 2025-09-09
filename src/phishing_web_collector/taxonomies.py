@@ -2,6 +2,8 @@ from enum import Enum
 
 
 class FeedSource(Enum):
+    """Enumeration of supported feed sources."""
+
     AD_GUARD_HOME = "AdGuardHomeFeed"
     BINARY_DEFENCE_IP = "BinaryDefenceIP"
     BLOCKLIST_DE_IP = "BlocklistDeIP"
@@ -28,6 +30,8 @@ class FeedSource(Enum):
 
 
 class RefreshInterval(Enum):
+    """Enumeration of refresh intervals in seconds."""
+
     HOURLY = 3600
     EVERY_2_HOURS = 7200
     EVERY_6_HOURS = 21600

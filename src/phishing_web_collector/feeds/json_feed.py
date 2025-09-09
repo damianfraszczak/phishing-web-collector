@@ -11,9 +11,12 @@ logger = logging.getLogger(__name__)
 
 
 class JSONFeed(FileBasedFeed):
+    """Abstract base class for JSON feed providers."""
+
     FILE_EXTENSION = "json"
 
     def parse_feed(self, raw_data: str) -> List[PhishingEntry]:
+        """Parse the raw JSON feed data and return a list of PhishingEntry objects."""
         try:
             data = json.loads(raw_data)
             fetch_time = datetime.now()
@@ -26,4 +29,5 @@ class JSONFeed(FileBasedFeed):
 
     @abstractmethod
     def parse_entry(self, item: Dict, fetch_time: datetime) -> Optional[PhishingEntry]:
+        """Parse a single JSON entry and return a PhishingEntry object."""
         pass

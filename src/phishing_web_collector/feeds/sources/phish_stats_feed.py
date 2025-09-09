@@ -7,6 +7,8 @@ from phishing_web_collector.taxonomies import RefreshInterval
 
 
 class PhishStatsFeed(CSVFeedProvider):
+    """Feed provider for PhishStats CSV feed."""
+
     URL = "https://phishstats.info/phish_score.csv"
     FEED_TYPE = "FeedSource.PHISH_STATS"
     INTERVAL = RefreshInterval.EVERY_2_HOURS.value

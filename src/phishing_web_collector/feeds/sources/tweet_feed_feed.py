@@ -7,6 +7,8 @@ from phishing_web_collector.taxonomies import RefreshInterval
 
 
 class TweetFeed(JSONFeed):
+    """Feed provider for TweetFeed API."""
+
     URL = "https://api.tweetfeed.live/v1/today/phishing/url"
     FEED_TYPE = FeedSource.TWEET_FEED
     INTERVAL = RefreshInterval.HOURLY.value

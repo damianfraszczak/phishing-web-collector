@@ -34,6 +34,7 @@ from phishing_web_collector.utils import load_json, remove_none_from_dict
 
 logger = logging.getLogger(__name__)
 
+# Mapping of feed sources to their corresponding classes
 SOURCES_MAP: Dict[FeedSource, Type[AbstractFeed]] = {
     FeedSource.AD_GUARD_HOME: AdGuardHomeFeed,
     FeedSource.BINARY_DEFENCE_IP: BinaryDefenceIpFeed,

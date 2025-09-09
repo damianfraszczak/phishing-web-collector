@@ -7,7 +7,7 @@ from phishing_web_collector.taxonomies import RefreshInterval
 
 
 class PhishTankFeed(JSONFeed):
-    """https://github.com/ProKn1fe/phishtank-database"""
+    """Feed provider for PhishTank database."""
 
     URL = "https://raw.githubusercontent.com/ProKn1fe/phishtank-database/master/online-valid.json"
     FEED_TYPE = FeedSource.PHISH_TANK

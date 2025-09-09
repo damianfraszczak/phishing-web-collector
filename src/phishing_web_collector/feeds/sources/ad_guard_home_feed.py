@@ -7,6 +7,8 @@ from phishing_web_collector.taxonomies import RefreshInterval
 
 
 class AdGuardHomeFeed(URLListFeedProvider):
+    """Feed provider for AdGuard Home block list."""
+
     URL = "https://raw.githubusercontent.com/Ealenn/AdGuard-Home-List/gh-pages/AdGuard-Home-List.Block.txt"
     FEED_TYPE = FeedSource.AD_GUARD_HOME
     INTERVAL = RefreshInterval.DAILY.value

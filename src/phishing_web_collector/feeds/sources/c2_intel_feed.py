@@ -6,6 +6,8 @@ from phishing_web_collector.models import FeedSource, PhishingEntry
 
 
 class C2IntelFeed(CSVFeedProvider):
+    """Feed provider for C2 Intel domain feed."""
+
     URL = "https://raw.githubusercontent.com/drb-ra/C2IntelFeeds/refs/heads/master/feeds/domainC2s.csv"
     FEED_TYPE = FeedSource.C2_INTEL_DOMAIN
     DELIMITER = ","
