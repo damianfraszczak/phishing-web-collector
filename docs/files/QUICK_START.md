@@ -40,5 +40,7 @@ To check how asynchronous data collection is faster than synchronous one, you ca
 
 To check how to run feeds directly, you can run the [direct feed invocation notebook](docs/files/jupyter/direct_feed_invocation.ipynb).
 
+To check how to filter feeds, you can run the [filter feeds notebook](docs/files/jupyter/filter_phishing_entries.ipynb).
+
 ## Docker usage
 If you want to use PhishingWebCollector in a Docker container, please check this [README](docker/README.md) file.
