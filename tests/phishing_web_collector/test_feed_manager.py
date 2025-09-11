@@ -1,10 +1,15 @@
+import re
 from datetime import datetime
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
 from phishing_web_collector import FeedManager
-from phishing_web_collector.models import FeedSource, PhishingEntry
+from phishing_web_collector.models import (
+    EntryFilter,
+    FeedSource,
+    PhishingEntry,
+)
 
 
 @pytest.fixture
@@ -26,7 +31,14 @@ def mock_feed():
                 reference_url="http://ref.com",
                 source=FeedSource.PHISH_TANK,
                 fetch_date=datetime.now(),
-            )
+            ),
+            PhishingEntry(
+                url="http://xyz.com",
+                targeted_url="http://newtarget.com",
+                reference_url="http://lastref.com",
+                source=FeedSource.TWEET_FEED,
+                fetch_date=datetime.now(),
+            ),
         ]
     )
     mock.retrieve_sync.return_value = [
@@ -36,7 +48,14 @@ def mock_feed():
             reference_url="http://ref.com",
             source=FeedSource.PHISH_TANK,
             fetch_date=datetime.now(),
-        )
+        ),
+        PhishingEntry(
+            url="http://xyz.com",
+            targeted_url="http://newtarget.com",
+            reference_url="http://lastref.com",
+            source=FeedSource.TWEET_FEED,
+            fetch_date=datetime.now(),
+        ),
     ]
     return mock
 
@@ -53,14 +72,18 @@ def feed_manager(mock_feed):
 @pytest.mark.asyncio
 async def test_retrieve_all(feed_manager):
     entries = await feed_manager.retrieve_all()
-    assert len(entries) == 1
+
+    assert len(entries) == 2
     assert entries[0].url == "http://test.com"
+    assert entries[1].url == "http://xyz.com"
 
 
 def test_sync_retrieve_all(feed_manager):
     entries = feed_manager.sync_retrieve_all()
-    assert len(entries) == 1
+
+    assert len(entries) == 2
     assert entries[0].url == "http://test.com"
+    assert entries[1].url == "http://xyz.com"
 
 
 def test_entry_map(feed_manager):
@@ -74,6 +97,7 @@ def test_entry_map(feed_manager):
         )
     ]
     result = feed_manager.entry_map
+
     assert "http://test.com" in result
     assert isinstance(result["http://test.com"], list)
 
@@ -111,3 +135,40 @@ def test_find_entry(feed_manager):
     found = feed_manager.find_entry("http://findme.com")
     assert isinstance(found, list)
     assert found[0]["targeted_url"] == "http://target.com"
+
+
+def url_contains(substr: str) -> EntryFilter:
+    s = substr.lower()
+    return lambda e: s in e.url.lower()
+
+
+def url_matches(pattern: str) -> EntryFilter:
+    rx = re.compile(pattern, re.IGNORECASE)
+    return lambda e: bool(rx.search(e.url))
+
+
+def test_sync_retrieve_all_with_global_url_filter(feed_manager):
+    feed_manager.add_filter(url_contains("test"))
+    entries = feed_manager.sync_retrieve_all()
+
+    assert len(entries) == 1
+    assert "test" in entries[0].url
+
+
+def test_per_feed_filter_applies(feed_manager):
+    feed_manager.add_filter_for_feed(FeedSource.PHISH_TANK, url_contains("xyz"))
+    entries = feed_manager.sync_retrieve_all()
+
+    assert len(entries) == 1
+    assert "xyz" in entries[0].url
+    assert FeedSource.TWEET_FEED == entries[0].source
+
+
+def test_clear_filters_restores_all(feed_manager):
+    feed_manager.add_filter(url_contains("test"))
+    entries = feed_manager.sync_retrieve_all()
+    assert len(entries) == 1
+
+    feed_manager.clear_filters()
+    entries = feed_manager.sync_retrieve_all()
+    assert len(entries) == 2

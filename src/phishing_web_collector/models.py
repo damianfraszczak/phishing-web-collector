@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Optional
+from typing import Callable, Optional
 
 from phishing_web_collector.taxonomies import FeedSource
 
@@ -17,3 +17,6 @@ class PhishingEntry:
 
     def __hash__(self):
         return hash(self.url)
+
+
+EntryFilter = Callable[["PhishingEntry"], bool]
