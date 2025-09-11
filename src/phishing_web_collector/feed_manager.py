@@ -148,7 +148,8 @@ class FeedManager:
         """Asynchronously retrieve entries from all feeds."""
         coros = [provider.retrieve() for provider in self.providers]
         results = await asyncio.gather(*coros)
-        self.entries = self._postprocess(results)
+        entries = [entry for r in results for entry in r]
+        self.entries = self._postprocess(entries)
         return self.entries
 
     # --- SYNC ---
@@ -158,7 +159,7 @@ class FeedManager:
         for provider in self.providers:
             provider.refresh_sync(force)
 
-    def sync_retrieve_all(self) -> List["PhishingEntry"]:
+    def sync_retrieve_all(self) -> List[PhishingEntry]:
         """Retrieve synchronously  entries from all feeds."""
         all_entries = []
         for provider in self.providers:
@@ -191,8 +192,7 @@ class FeedManager:
 
     def _postprocess(self, results: List[PhishingEntry]) -> List[PhishingEntry]:
         seen: set = set()
-        out: List["PhishingEntry"] = []
-        print(results)
+        out: List[PhishingEntry] = []
         for entry in results:
             if not self._accept(entry):
                 continue
