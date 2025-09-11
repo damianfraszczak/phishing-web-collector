@@ -1,5 +1,5 @@
+import re
 from datetime import datetime
-from typing import re
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
