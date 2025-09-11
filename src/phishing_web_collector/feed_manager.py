@@ -2,7 +2,7 @@ import asyncio
 import json
 import logging
 from collections import defaultdict
-from typing import Callable, Dict, Iterable, List, Optional, Type
+from typing import Dict, Iterable, List, Optional, Type
 
 from phishing_web_collector.feeds.feed import AbstractFeed
 from phishing_web_collector.feeds.sources import (
@@ -29,7 +29,11 @@ from phishing_web_collector.feeds.sources import (
     UrlHausFeed,
     ValdinFeed,
 )
-from phishing_web_collector.models import FeedSource, PhishingEntry
+from phishing_web_collector.models import (
+    EntryFilter,
+    FeedSource,
+    PhishingEntry,
+)
 from phishing_web_collector.utils import load_json, remove_none_from_dict
 
 logger = logging.getLogger(__name__)
@@ -60,8 +64,6 @@ SOURCES_MAP: Dict[FeedSource, Type[AbstractFeed]] = {
     FeedSource.URL_HAUS: UrlHausFeed,
     FeedSource.VALDIN: ValdinFeed,
 }
-
-EntryFilter = Callable[["PhishingEntry"], bool]
 
 
 class FeedManager:
